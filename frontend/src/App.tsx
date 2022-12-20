@@ -1,19 +1,22 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, Show, Suspense } from 'solid-js';
+import { Routes, Route } from '@solidjs/router'
 import './App.scss';
-import Counter from './Counter';
+import { Home, Auth } from './page'
+import { Loading } from './component'
+import { Dashboard } from './page/Dashboard';
 
-const App: Component = () => {
-  const [counter, setCounter] = createSignal(0);
-  setInterval(setCounter, 1000, (c: number) => c + 1);
+export const App: Component = () => {
+  const [ isAppLoading, setAppLoading ] = createSignal(true);
 
   return (
-    <>
-      <div>
-        <h1 class="header">{counter()}</h1>
-      </div>
-      <Counter />
-    </>
-  );
+    <Show when={ isAppLoading() } keyed>
+      <Suspense fallback={ Loading }>
+        <Routes>
+          <Route path='/' component={ Home } />
+          <Route path='/auth' component={ Auth } />
+          <Route path='/dashboard' component={ Dashboard } />
+        </Routes>
+      </Suspense>
+    </Show>
+  )
 };
-
-export default App;

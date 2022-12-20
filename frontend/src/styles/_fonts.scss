@@ -1,0 +1,25 @@
+$regular-line-height: 1.5;
+$base-font: 'Ubuntu', sans-serif;
+$mono-font: 'Ubuntu Mono', monospace;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$font-size-base: 10px;
+
+@mixin font-body {
+  font:
+    $font-weight-normal #{$font-size-base} / #{$regular-line-height} #{$base-font},
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol';
+}
+
